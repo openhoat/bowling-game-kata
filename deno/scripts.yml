@@ -1,0 +1,27 @@
+scripts:
+  check:
+    desc: Check sources types.
+    cmd: deno check lib/**.ts test/**.ts
+  clean:
+    desc: Clean the dist folder.
+    cmd: .deno/bin/fs_cli rm dist
+  format:
+    desc: Check for project sources format.
+    cmd: deno fmt --check
+  install:
+    desc: Install all the tools used in the project.
+    cmd:
+      - deno install --root .deno --allow-read --allow-write --allow-env --allow-run -qfn fs_cli https://deno.land/x/fs_cli@v1.0.0/cli.ts
+  lint:
+    desc: Lint the project sources.
+    cmd: deno lint
+  test:
+    desc: Run the tests.
+    cmd: deno test ./test
+  validate:
+    desc: Validate the project.
+    cmd:
+      - .deno/bin/vr clean
+      - .deno/bin/vr format
+      - .deno/bin/vr check
+      - .deno/bin/vr lint
